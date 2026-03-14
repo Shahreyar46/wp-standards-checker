@@ -49,6 +49,19 @@ Wp Standards Checker is engineered to work natively in all modern AI-powered cod
 - **Prompt Example**: *"@[/wp-standards-checker] Perform a full audit on the current file and fix any security blockers."*
 - **Slash Shortcut**: Just type `/wp-standards-checker` in supported editors to trigger the full auditing workflow immediately.
 
+### ⚙️ Command Syntax & Arguments
+
+The skill accepts a strict command syntax to customize the workflow:
+```text
+/wp-standards-checker <plugin-path> [--fix] [--review] [--pcp] [--report]
+```
+
+- `plugin-path`: The path to the plugin directory (e.g. `.` for current directory, `./path-to-plugin`).
+- `--fix`: Run `phpcbf` to automatically fix formatting issues, followed by AI surgical logic fixes.
+- `--review`: Detailed review mode for deep security audits and logic optimization suggestions.
+- `--pcp`: Run an audit using ONLY the official WordPress Plugin Check (PCP) logic ruleset.
+- `--report`: Generate a comprehensive `AUDIT_REPORT.md` file listing all violations and fixes.
+
 ---
 
 ## 💎 Suite Overview & Benefits
