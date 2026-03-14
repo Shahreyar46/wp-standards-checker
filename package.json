@@ -1,0 +1,34 @@
+{
+  "name": "wp-standards",
+  "version": "1.0.0",
+  "description": "WordPress coding standards enforcement, PHPCS/WPCS audit, WordPress.org plugin review compliance, and Plugin Check (PCP) automated checker.",
+  "main": "SKILL.md",
+  "keywords": [
+    "wordpress",
+    "wpcs",
+    "phpcs",
+    "standards",
+    "security",
+    "audit",
+    "wp-dark-mode",
+    "wppool"
+  ],
+  "author": {
+    "name": "MD. AL-Shahreyar",
+    "url": "https://github.com/Shahreyar46"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "knowledge/",
+    "templates/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Shahreyar46/wp-standards.git"
+  }
+}

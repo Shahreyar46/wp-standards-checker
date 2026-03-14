@@ -1,0 +1,28 @@
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.bak
+
+# Skill specific ignores
+install.bat.bak
+*.log
+
+# Audit Reports (User should generate these locally, not commit them)
+*_REPORT.md
+AUDIT_REPORT.md
+WP_STANDARDS_REPORT.md
+
+# Dependencies
+node_modules/
+vendor/
+composer.lock
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# PHPCS cache
+.phpcs-cache
