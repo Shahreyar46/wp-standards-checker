@@ -60,5 +60,5 @@
 
 ## 💡 Pro Tips
 - Run `phpcs -s` to see these codes attached to every error in your terminal.
-- Run `phpcbf` to auto-fix whitespace, indentation, and style codes.
+- Run `phpcbf --standard=WordPress` to auto-fix whitespace, indentation, and style codes.
 - For PCP-specific checks, use: `wp plugin check <plugin-slug>` in WP-CLI.

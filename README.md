@@ -57,7 +57,7 @@ The skill accepts a strict command syntax to customize the workflow:
 ```
 
 - `plugin-path`: The path to the plugin directory (e.g. `.` for current directory, `./path-to-plugin`).
-- `--fix`: Run `phpcbf` to automatically fix formatting issues, followed by AI surgical logic fixes.
+- `--fix`: Run `phpcbf --standard=WordPress --ignore=vendor,node_modules` to automatically fix formatting issues. **Note**: Automativally detects PSR-4/Composer projects and adjusts naming sniffs to prevent false positives.
 - `--review`: Detailed review mode for deep security audits and logic optimization suggestions.
 - `--pcp`: Run an audit using ONLY the official WordPress Plugin Check (PCP) logic ruleset.
 - `--report`: Generate a comprehensive `AUDIT_REPORT.md` file listing all violations and fixes.
@@ -70,7 +70,7 @@ Wp Standards Checker provides a professional-grade engineering environment for W
 
 ### Why Developers Trust This Suite:
 *   **Zero-Dependency Integrity**: Functions autonomously using a built-in "Master Ruleset" when local tools like PHPCS are missing.
-*   **Hybrid Power**: Seamlessly leverages local `phpcs` and `phpcbf` binaries for millisecond-speed formatting while layering AI contextual wisdom for security logic.
+*   **Hybrid Power**: Seamlessly leverages local `phpcs` and `phpcbf` binaries (enforcing the `WordPress` standard) for millisecond-speed formatting while layering AI contextual wisdom for security logic.
 *   **Skill Orchestration (Mother Skill)**: Acts as a hub—automatically detects and installs related skills like `wp-performance`, `wp-block-development`, and `wp-translate`.
 *   **Safety-First Protocol**: Performs "Functional Parity QA" to ensure audits never break your plugin's logic or database queries.
 *   **Proactive Compliance**: Stays updated with the latest WordPress.org "Late Escaping" and "Direct Access" (ABSPATH) enforcement rules.
@@ -85,8 +85,10 @@ Building a professional WordPress plugin usually requires hours of manual lintin
 1.  **Stop Guessing Standards**: No more looking up if it's `snake_case` or `camelCase`. The suite enforces the correct WordPress way automatically.
 2.  **Instant Refactoring**: Need to rename 200 functions or add `ABSPATH` to 50 files? The suite does it in a single command, saving you a full workday of tedious manual edits.
 3.  **One-Click Compliance**: Instead of manual audits, run `/wp-standards-checker . --pcp` and get a full report of everything that will cause a WP.org rejection.
-4.  **Zero Setup Friction**: No need to spend 30 minutes configuring PHPCS, Composer, and WPCS rules. The suite works out-of-the-box with its built-in ruleset.
-5.  **Focus on Logic, Not Syntax**: Spend your energy building features while the suite handles the "boring" work of escaping, sanitizing, and formatting.
+4.  **Intelligent PSR-4 Detection**: Automatically detects if your project uses Composer or PSR-4 autoloading. If detected, it suspends strict WordPress filename and variable naming sniffs to ensure your modern architecture isn't flagged incorrectly.
+5.  **Zero Setup Friction**: No need to spend 30 minutes configuring PHPCS, Composer, and WPCS rules. The suite works out-of-the-box with its built-in ruleset.
+6.  **Focus on Logic, Not Syntax**: Spend your energy building features while the suite handles the "boring" work of escaping, sanitizing, and formatting.
+7.  **Auto-Contained Reports**: All audit results are neatly stored in a `wp-standards-reports/` folder inside your plugin for easy reference.
 
 ---
 
@@ -109,7 +111,9 @@ You can ask the AI to systematically fix issues found in the report:
 - **Prompt**: *"Review the AUDIT_REPORT.md I just generated. One-by-one, fix every section marked as 'Violation' and update the report when done."*
 
 ### 📊 Example Report Output (`--pcp` / `--report`)
-When you run a compliance check, the AI generates a professional, categorized markdown response like this:
+When you run a compliance check, the AI creates a dedicated `wp-standards-reports/` folder inside your plugin directory containing your full markdown reports (`AUDIT_REPORT.md`, `PCP_REPORT.md`, `REVIEW_REPORT.md`). 
+
+Here is an example of what the AI generates:
 
 ```markdown
 ## 🛡️ WP.org Compliance Audit: `my-plugin`
@@ -134,7 +138,7 @@ When you run a compliance check, the AI generates a professional, categorized ma
 
 ### Scenario A: Cleaning Up Legacy Code
 - **Problem**: You inherited an old plugin with mixed indentation (tabs/spaces), non-standard function naming, and hundreds of linting warnings.
-- **The Process**: The skill uses `phpcbf` to fix formatting instantly and then uses AI to rename functions/variables to meet snake_case standards.
+- **The Process**: The skill uses `phpcbf --standard=WordPress --ignore=vendor,node_modules` to fix formatting instantly and then uses AI to rename functions/variables to meet snake_case standards.
 - **Example Prompt**: `"/wp-standards-checker ./path-to-plugin --fix"` or *"Clean up the coding standards in my /includes folder and fix all Yoda conditions."*
 
 ### Scenario B: Preparing for WordPress.org Submission

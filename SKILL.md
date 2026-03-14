@@ -34,7 +34,12 @@ This skill is organized into a modular structure for maximum clarity:
 
 ### STEP 0 — Triage, Dependencies & Environment
 1.  **Detect Plugin Path**: From arguments or open file context.
-2.  **Dependency Discovery**: Check for related skills to enhance the audit:
+2.  **Autoloading Detection**: Search for `composer.json` or a `src/` directory.
+    - If found: Set mode to **PSR-4 Compatible**.
+    - If NOT found: Set mode to **Standard WordPress**.
+3.  **Dependency Discovery**: Check for related skills to enhance the audit:
+4.  **Auto-Install Scripts**: If scripts are missing, ensure local clones contain the `scripts/` directory with `report-generator.js`.
+
     - If `performance` issues suspected: Check for `wp-performance`.
     - If `i18n` or `translate` requested: Check for `wp-translate`.
     - If `blocks` or `themes` detected: Check for `wp-block-development` or `wp-block-themes`.
@@ -62,9 +67,17 @@ This skill is organized into a modular structure for maximum clarity:
     1.  `.phpcs.xml`, `.phpcs.xml.dist`
     2.  `phpcs.xml`, `phpcs.xml.dist`
     3.  `phpcs.ruleset.xml`, `ruleset.xml`
-    -   If found, use `--standard=path/to/file.xml`. Otherwise, fallback to `--standard=WordPress`.
+    -   If found, use `--standard=path/to/file`. Otherwise, fallback to `--standard=WordPress`.
 
--   **Binary Mode**: Run `phpcs --report=json -q --encoding=UTF-8 "<PATH>"`. Include `-s` to show sniff codes if `--report` is requested.
+-   **Binary Mode**:
+    1. **Check for Logic Overrides**:
+       - If **PSR-4 Compatible**: Add `--exclude=WordPress.Files.FileName,WordPress.NamingConventions.ValidVariableName` to avoid false positives on PSR-4 standard filenames and camelCase variables in vendor/generated code.
+    2. **Run Command**:
+       - Standard: `phpcs --standard=WordPress --ignore=vendor,node_modules --report=json -q --encoding=UTF-8 "<PATH>" > wp-standards-reports/phpcs_full_report.json`
+       - PSR-4: `phpcs --standard=WordPress --exclude=WordPress.Files.FileName,WordPress.NamingConventions.ValidVariableName --ignore=vendor,node_modules --report=json -q --encoding=UTF-8 "<PATH>" > wp-standards-reports/phpcs_full_report.json`
+    3. **Generate Markdown Reports**:
+       - `node "C:/Users/Shimul/.gemini/antigravity/skills/wp-standards-checker/scripts/report-generator.js" "wp-standards-reports/phpcs_full_report.json" "<PLUGIN-NAME>" "./wp-standards-reports"`
+    4. Include `-s` to show sniff codes if `--report` is requested. Note: Always ensure the `WordPress` standard is used so that WordPress's native tab-indentation rules are applied correctly instead of generic PSR space rules, and ALWAYS ignore `vendor` and `node_modules` directories as they contain third-party code.
 -   **Standalone Mode**: Read code files and compare against `knowledge/00_GLOBAL_MASTER_RULESET.md`. Identify naming, indentation, and security violations manually.
 
 ### STEP 2 — Fix Issues (The "Safety-First" Protocol)
