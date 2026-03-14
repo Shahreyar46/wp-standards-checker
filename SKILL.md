@@ -105,9 +105,12 @@ This skill is organized into a modular structure for maximum clarity:
     *   **Data Structures**: Never change the structure of an array or object being saved to/read from the Database (Options/Meta) as it will break existing user data.
     *   **Complex Refactoring**: If a function is too complex, **DO NOT** rewrite it just to pass a "complexity" sniff. Report it as a manual refactoring suggestion.
 3.  **Incremental Execution**: Apply fixes one-by-one and verify.
-4.  **Functional Verification**:
-    *   Perform a "Mental Run" (Dry Run) of the code to ensure the data flow remains identical.
-    *   Verify that `sanitize_*` matches the specific field type (e.g., use `esc_url` for URLs, not `sanitize_text_field`).
+4.  **The "QA Gate" (Self-Correction Loop)**: After every edit, the AI must:
+    - **Step A: Syntax Check**: Run `php -l <file>` (or equivalent for JS) to ensure NO syntax errors were introduced.
+    - **Step B: Re-Scan**: Run `phpcs` on the specific file/lines to confirm the targeted error is gone.
+    - **Step C: Functional Verification**: Perform a "Mental Run" (Dry Run) of the code to ensure the data flow remains identical.
+    - **Step D: Universal Logic Preservation**: For ANY change involving logic or state (PHP hooks, JS functions, SQL queries, or CSS selectors), the AI must verify that the **system behavior** remains exactly the same. If a function outputted 'X' before, it MUST output 'X' after. If a CSS selector targeted 'Y', it MUST target exactly 'Y' after.
+    - **Step E: Blocker Check**: Verify the fix doesn't trigger a new blocker from `knowledge/01_WP_ORG_BLOCKERS.md`.
 5.  **No-Break Guarantee**: If a coding standard fix risks breaking internal or external dependencies, **DEFER TO MANUAL**. Flag it in the report as "High-Risk: Manual Review Required."
 
 ---

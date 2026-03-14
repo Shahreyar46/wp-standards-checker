@@ -92,6 +92,33 @@ Building a professional WordPress plugin usually requires hours of manual lintin
 
 ---
 
+## 🛠️ The Intelligent Fixing Process (WPSafeFix)
+
+Wp Standards Checker doesn't just "overwrite" code. It uses a professional **WPSafeFix** protocol to ensure every change is secure and functional. Here is the 4-step process other developers can learn from:
+
+### 1. Contextual Analysis (The "Brain" Phase)
+Before making any edit, the AI reads your project's **Knowledge Base** (e.g., `05_DATABASE_API.md`). It identifies:
+- **Expected Types**: Is this variable an `int`, `string`, or `array`?
+- **Usage Risks**: Is this function a callback for a WooCommerce hook? If so, renaming it is forbidden.
+- **Security Needs**: Does this query require `$wpdb->prepare` or just escaping?
+
+### 2. The "Surgical" Edit
+The fix is applied with **precise block replacement** rather than rewriting entire files.
+- **Logic Preservation**: The AI ensures that the underlying business logic remains 100% identical.
+- **Standard Alignment**: Indentation is automatically corrected to **logical tabs** (WordPress standard) during the edit.
+
+### 3. The "QA Gate" (Self-Correction Loop)
+This is the most critical step for professional engineering. After every fix, the suite runs:
+- **Step A: Syntax Check**: Runs `php -l` or JS linting. If a syntax error is detected, the AI **automatically rolls back** the change and tries again.
+- **Step B: Re-Scan Verification**: Re-scans the file with `phpcs` to confirm the specific error code (e.g., `WordPress.DB.PreparedSQL.NotPrepared`) is actually gone.
+- **Step C: Universal Logic Preservation**: For ANY change involving logic or state (PHP, JS, or CSS), the AI must ensure that the **system behavior** remains exactly the same:
+    - **Data**: Queries MUST return the same item count and values.
+    - **UI**: CSS changes MUST target the exact same elements without affecting layout.
+    - **Actions**: Hooks and Filters MUST fire with the same arguments and return the same results.
+- **Step D: Blocker Check**: Verify the fix doesn't trigger a new blocker from `01_WP_ORG_BLOCKERS.md`.
+
+---
+
 ## 📄 Scanning & Generating Audit Reports
 
 Wp Standards Checker makes it easy to visualize your project's health with professional reports.
