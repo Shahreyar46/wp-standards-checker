@@ -108,6 +108,26 @@ Before submitting to WordPress.org, generate a definitive document that proves c
 You can ask the AI to systematically fix issues found in the report:
 - **Prompt**: *"Review the AUDIT_REPORT.md I just generated. One-by-one, fix every section marked as 'Violation' and update the report when done."*
 
+### 📊 Example Report Output (`--pcp` / `--report`)
+When you run a compliance check, the AI generates a professional, categorized markdown response like this:
+
+```markdown
+## 🛡️ WP.org Compliance Audit: `my-plugin`
+
+### ❌ CRITICAL BLOCKERS (Must Fix)
+- **[Late Escaping]** `includes/views.php:42` — `echo $custom_title;` is unescaped. (Fix: Use `esc_html()`)
+- **[Direct Access]** `includes/ajax.php:1` — Missing `ABSPATH` check.
+- **[Unsafe SQL]** `includes/db.php:115` — Direct variable interpolation in `$wpdb->query`.
+
+### ⚠️ WARNINGS (Should Fix)
+- **[Naming Collision]** `class-updater.php:12` — Class `Plugin_Updater` lacks prefix `myplug_`.
+- **[Yoda Conditions]** `includes/logic.php:88` — Use `if ( true === $is_active )`.
+
+### ✅ PASSED
+- [x] Nonce Verification (All POST requests protected)
+- [x] Capability Checks (All AJAX endpoints secured)
+```
+
 ---
 
 ## 📂 Detailed Developer Scenarios
