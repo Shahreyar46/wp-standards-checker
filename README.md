@@ -39,23 +39,6 @@ curl -L https://raw.githubusercontent.com/Shahreyar46/wp-standards/master/instal
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Shahreyar46/wp-standards/master/install.sh)"
 ```
 
-### 🤖 AI Code Editor Integration (Cursor, Claude Code, Kiro, Antigravity, Gemini, Codex)
-
-Wp Standards Checker is engineered to work natively in all modern AI-powered code editors. You can invoke the skill directly in your AI chat or workflow using the `@` mention or slash command system.
-
-| Editor | Integration Method |
-|---|---|
-| **Cursor** | Use `@wp-standards-checker` to reference the skill in chat or composer. |
-| **Claude Code** | Type `/wp-standards-checker` or mention the skill in your CLI prompt. |
-| **Kiro / Codex** | Use the `@[/wp-standards-checker]` intent for automated auditing workflows. |
-| **Antigravity** | Mention `@wp-standards-checker` to trigger the "Mother Skill" orchestration. |
-| **Gemini** | Use slash commands `/wp-standards-checker` for instant compliance checks. |
-
-- **Mention**: `@wp-standards-checker` (Refers to the skill's knowledge base)
-- **Workflow / Intent**: `@[/wp-standards-checker]` or `/wp-standards-checker` (Triggers active auditing)
-- **Prompt Example**: *"@[/wp-standards-checker] Perform a full audit on the current file and fix any security blockers."*
-- **Slash Shortcut**: Just type `/wp-standards-checker` in supported editors to trigger the full auditing workflow immediately.
-
 ### 🛠️ Universal Manual Install for All AI Editors
 
 If you are using an AI assistant (Cursor, Windsurf, Copilot, Gemini CLI, Claude Code, etc.) and want to set it up manually without using the installer, follow these universal steps:
@@ -82,6 +65,23 @@ If you are using an AI assistant (Cursor, Windsurf, Copilot, Gemini CLI, Claude 
 The AI will now detect `SKILL.md` inside that folder and automatically gain the ability to use the `/wp-standards-checker` command or perform deep-tissue audits in natural language.
 
 ---
+
+### 🤖 AI Code Editor Integration (Cursor, Claude Code, Kiro, Antigravity, Gemini, Codex)
+
+Wp Standards Checker is engineered to work natively in all modern AI-powered code editors. You can invoke the skill directly in your AI chat or workflow using the `@` mention or slash command system.
+
+| Editor | Integration Method |
+|---|---|
+| **Cursor** | Use `@wp-standards-checker` to reference the skill in chat or composer. |
+| **Claude Code** | Type `/wp-standards-checker` or mention the skill in your CLI prompt. |
+| **Kiro / Codex** | Use the `@[/wp-standards-checker]` intent for automated auditing workflows. |
+| **Antigravity** | Mention `@wp-standards-checker` to trigger the "Mother Skill" orchestration. |
+| **Gemini** | Use slash commands `/wp-standards-checker` for instant compliance checks. |
+
+- **Mention**: `@wp-standards-checker` (Refers to the skill's knowledge base)
+- **Workflow / Intent**: `@[/wp-standards-checker]` or `/wp-standards-checker` (Triggers active auditing)
+- **Prompt Example**: *"@[/wp-standards-checker] Perform a full audit on the current file and fix any security blockers."*
+- **Slash Shortcut**: Just type `/wp-standards-checker` in supported editors to trigger the full auditing workflow immediately.
 
 ### ⚙️ Command Syntax & Arguments
 
