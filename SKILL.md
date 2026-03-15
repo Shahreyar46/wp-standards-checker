@@ -62,23 +62,22 @@ This skill is organized into a modular structure for maximum clarity:
 
 ---
 
-### STEP 1 — Baseline Scan / Audit
--   **Auto-Discovery**: Before scanning, search for local configuration files in order of priority:
-    1.  `.phpcs.xml`, `.phpcs.xml.dist`
-    2.  `phpcs.xml`, `phpcs.xml.dist`
-    3.  `phpcs.ruleset.xml`, `ruleset.xml`
-    -   If found, use `--standard=path/to/file`. Otherwise, fallback to `--standard=WordPress`.
+### STEP 1 — Baseline Scan / Audit (PCP Parity Mode)
+-   **PCP Ruleset Discovery**: Before scanning, search for official Plugin Check rulesets:
+    1.  `../../plugin-check/phpcs-rulesets/plugin-review.xml` (Best for WP.org prep)
+    2.  `.phpcs.xml`, `phpcs.xml` (Project local)
+    -   If PCP plugin is found (e.g., in `wp-content/plugins/plugin-check`), use its ruleset to ensure 100% parity with the official tool.
 
 -   **Binary Mode**:
     1. **Check for Logic Overrides**:
        - If **PSR-4 Compatible**: Add `--exclude=WordPress.Files.FileName,WordPress.NamingConventions.ValidVariableName` to avoid false positives on PSR-4 standard filenames and camelCase variables in vendor/generated code.
     2. **Run Command**:
-       - Standard: `phpcs --standard=WordPress --ignore=vendor,node_modules --report=json -q --encoding=UTF-8 "<PATH>" > wp-standards-reports/phpcs_full_report.json`
-       - PSR-4: `phpcs --standard=WordPress --exclude=WordPress.Files.FileName,WordPress.NamingConventions.ValidVariableName --ignore=vendor,node_modules --report=json -q --encoding=UTF-8 "<PATH>" > wp-standards-reports/phpcs_full_report.json`
+       - Standard PCP (If found): `phpcs --standard="../../plugin-check/phpcs-rulesets/plugin-review.xml" --ignore=vendor,node_modules --report=json -q --encoding=UTF-8 "<PATH>" > wp-standards-reports/phpcs_full_report.json`
+       - Standard fallback: `phpcs --standard=WordPress --ignore=vendor,node_modules --report=json -q --encoding=UTF-8 "<PATH>" > wp-standards-reports/phpcs_full_report.json`
     3. **Generate Markdown Reports**:
        - `node "C:/Users/Shimul/.gemini/antigravity/skills/wp-standards-checker/scripts/report-generator.js" "wp-standards-reports/phpcs_full_report.json" "<PLUGIN-NAME>" "./wp-standards-reports"`
-    4. Include `-s` to show sniff codes if `--report` is requested. Note: Always ensure the `WordPress` standard is used so that WordPress's native tab-indentation rules are applied correctly instead of generic PSR space rules, and ALWAYS ignore `vendor` and `node_modules` directories as they contain third-party code.
--   **Standalone Mode**: Read code files and compare against `knowledge/00_GLOBAL_MASTER_RULESET.md`. Identify naming, indentation, and security violations manually.
+    4. Include `-s` to show sniff codes if `--report` is requested. Always ignore `vendor` and `node_modules`.
+-   **Standalone Mode**: Read code files and compare against `knowledge/02_PCP_LOGIC.md` and `knowledge/01_WP_ORG_BLOCKERS.md`. Identify naming, indentation, and security violations manually.
 
 ### STEP 2 — Fix Issues (The "Safety-First" Protocol)
 **CRITICAL**: Functional integrity is more important than coding standards. NEVER break a plugin's logic to satisfy a linter.

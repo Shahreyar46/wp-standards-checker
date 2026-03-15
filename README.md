@@ -23,8 +23,15 @@ A high-performance AI skill engineered to enforce **WordPress Coding Standards (
 ## 🚀 Installation & Integration
 
 ### One-Liner Install (Windows)
+
+**PowerShell (Recommended):**
 ```powershell
 powershell -c "irm https://raw.githubusercontent.com/Shahreyar46/wp-standards/master/install.bat -OutFile install.bat; .\install.bat"
+```
+
+**Command Prompt / CMD:**
+```cmd
+curl -L https://raw.githubusercontent.com/Shahreyar46/wp-standards/master/install.bat -o install.bat && install.bat
 ```
 
 ### One-Liner Install (Mac/Linux)
@@ -48,6 +55,33 @@ Wp Standards Checker is engineered to work natively in all modern AI-powered cod
 - **Workflow / Intent**: `@[/wp-standards-checker]` or `/wp-standards-checker` (Triggers active auditing)
 - **Prompt Example**: *"@[/wp-standards-checker] Perform a full audit on the current file and fix any security blockers."*
 - **Slash Shortcut**: Just type `/wp-standards-checker` in supported editors to trigger the full auditing workflow immediately.
+
+### 🛠️ Universal Manual Install for All AI Editors
+
+If you are using an AI assistant (Cursor, Windsurf, Copilot, Gemini CLI, Claude Code, etc.) and want to set it up manually without using the installer, follow these universal steps:
+
+1. **Find your AI tool's data/configuration directory** (usually in your user home folder):
+   - **Gemini CLI / Antigravity**: `~/.gemini/antigravity/`
+   - **Claude Code / Kiro**: `~/.claude/`
+   - **Codex CLI**: `~/.codex/`
+   - **Other tools**: Check your tool's documentation for where it stores "skills" or "instructions".
+
+2. **Create a `skills` folder** inside that directory if it doesn't already exist.
+   
+3. **Git clone** this repository inside that `skills` folder:
+   ```bash
+   # Example for Gemini / Antigravity
+   cd ~/.gemini/antigravity/skills
+   git clone https://github.com/Shahreyar46/wp-standards-checker.git
+   
+   # Example for Claude Code
+   cd ~/.claude/skills
+   git clone https://github.com/Shahreyar46/wp-standards-checker.git
+   ```
+
+The AI will now detect `SKILL.md` inside that folder and automatically gain the ability to use the `/wp-standards-checker` command or perform deep-tissue audits in natural language.
+
+---
 
 ### ⚙️ Command Syntax & Arguments
 

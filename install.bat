@@ -5,7 +5,11 @@
 ::  by MD. AL-Shahreyar (https://github.com/Shahreyar46)
 ::
 ::  Usage:
+::    (PowerShell)
 ::    powershell -c "irm https://raw.githubusercontent.com/Shahreyar46/wp-standards/master/install.bat -OutFile install.bat; .\install.bat"
+::
+::    (Command Prompt / CMD)
+::    curl -L https://raw.githubusercontent.com/Shahreyar46/wp-standards/master/install.bat -o install.bat && install.bat
 ::
 ::  Or just run this file after downloading it.
 :: ============================================================
